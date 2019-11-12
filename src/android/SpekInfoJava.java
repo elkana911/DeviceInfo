@@ -1,4 +1,4 @@
-package cordova-plugin-mytoast;
+package cordova-plugin-dvcinfo;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
