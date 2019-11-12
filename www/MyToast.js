@@ -15,6 +15,12 @@ Hello.prototype.getSerialNumber = function (successCallback, errorCallback){
     cordova.exec(successCallback, errorCallback, 'MyToast', 'serialNumber', []);
 }
 
+Hello.prototype.getBatteryLevel = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'batterylevel', []);
+}
+
+
+
 Hello.install = function() {
     if (!window.plugins) {
         window.plugins = {};
