@@ -1,4 +1,4 @@
-package cordova-plugin-dvcinfo;
+package com.example.dvcinfo;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
