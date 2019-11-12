@@ -19,6 +19,41 @@ Hello.prototype.getBatteryLevel = function (successCallback, errorCallback){
     cordova.exec(successCallback, errorCallback, 'MyToast', 'batterylevel', []);
 }
 
+Hello.prototype.getModelName = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'modelname', []);
+}
+
+Hello.prototype.getOSVersion = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'osversion', []);
+}
+
+Hello.prototype.getDeviceName = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'devicename', []);
+}
+
+Hello.prototype.getManufacturer = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'manufacturer', []);
+}
+
+Hello.prototype.getBuildNumber = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'buildnumber', []);
+}
+
+Hello.prototype.getKernelVersion = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'kernelversion', []);
+}
+
+Hello.prototype.getWifiStatus = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'wifistatus', []);
+}
+
+Hello.prototype.getMobileNetworkStatus = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'mobilenetwork', []);
+}
+
+Hello.prototype.getBluetoothStatus = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'bluetoothstatus', []);
+}
 
 
 Hello.install = function() {
