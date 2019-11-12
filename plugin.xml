@@ -12,7 +12,7 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="MyToast">
-                <param name="android-package" value="com.example.dvcinfo.MyToast" />
+                <param name="android-package" value="com.example.dvcinfo.SpekInfoJava" />
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml" />
