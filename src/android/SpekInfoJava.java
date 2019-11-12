@@ -1,8 +1,12 @@
 package com.example.dvcinfo;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.os.Build;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -29,7 +33,44 @@ public class SpekInfoJava extends CordovaPlugin {
             int level = getBatteryLevel();
             callbackContext.success(String.valueOf(level));
             return true;
+        } else if (action.equals("modelname")) {
+             String status = getModelName();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("osversion")) {
+            String status = getOSVersion();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("devicename")) {
+            String status = getDeviceName();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("manufacturer")) {
+            String status = getManufacturer();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("buildnumber")) {
+            String status = getBuildNumber();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("kernelversion")) {
+            String status = getKernelVersion();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("wifistatus")) {
+            String status = isWifiNetworkAvailable();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("mobilenetwork")) {
+            String status = isMobileNetworkAvailable();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("bluetoothstatus")) {
+            String status = checkBluetoothConnection();
+            callbackContext.success(status);
+            return true;
         }
+        
         return false;
     }
 
@@ -40,12 +81,64 @@ public class SpekInfoJava extends CordovaPlugin {
             callbackContext.error("Expected one non-empty string argument.");
         }
     }
+    
+    public String isWifiNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) webView.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return "Connected";
+        } else return "Disconnected";
+    }
+
+    public String isMobileNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) webView.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            return "Connected";
+        } else {
+            return "Disconnected";
+        }
+    }
+    
+    private String checkBluetoothConnection () {
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
+            return "Not supported";
+        } else {
+            if (!mBluetoothAdapter.isEnabled()) {
+                return "Disabled";
+            } else {
+                return "Enabled";
+            }
+        }
+    }
+    
     public int getBatteryLevel(){
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = webView.getContext().registerReceiver(null, ifilter);
 
         return batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+    }
+    
+    private String getModelName(){
+        return Build.MODEL;
+    }
+    private String getOSVersion() {
+        return Build.VERSION.RELEASE;
+    }
+    private String getDeviceName(){
+        return Build.PRODUCT;
+    }
+    private String getManufacturer(){
+        return Build.MANUFACTURER;
+    }
+    private String getBuildNumber() {
+        return Build.FINGERPRINT;
+    }
+    private String getKernelVersion(){
+        return System.getProperty("os.version");
     }
     
     //    https://gist.github.com/flawyte/efd23dd520fc2320f94ba003b9aabfce
