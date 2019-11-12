@@ -1,5 +1,9 @@
 package com.example.dvcinfo;
 
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -21,6 +25,10 @@ public class SpekInfoJava extends CordovaPlugin {
             String message = getSerialNumber();
             callbackContext.success(message);
             return true;
+        } else if (action.equals("batterylevel")) {
+            int level = getBatteryLevel();
+            callbackContext.success(String.valueOf(level));
+            return true;
         }
         return false;
     }
@@ -33,6 +41,13 @@ public class SpekInfoJava extends CordovaPlugin {
         }
     }
 
+    public static int getBatteryLevel(){
+        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = webView.getContext().registerReceiver(null, ifilter);
+
+        return batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+    }
+    
     //    https://gist.github.com/flawyte/efd23dd520fc2320f94ba003b9aabfce
     public static String getSerialNumber(){
         String serialNumber;
