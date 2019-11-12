@@ -41,7 +41,7 @@ public class SpekInfoJava extends CordovaPlugin {
         }
     }
 
-    public static int getBatteryLevel(){
+    public int getBatteryLevel(){
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = webView.getContext().registerReceiver(null, ifilter);
 
