@@ -8,11 +8,11 @@ Hello.prototype.show = function (message, duration, successCallback, errorCallba
     var obj = {};
     obj.message = message;
     obj.duration = duration;
-    cordova.exec(successCallback, errorCallback, 'MyHello', 'show', [obj]);
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'show', [obj]);
 }*/
 
 Hello.prototype.getSerialNumber = function (successCallback, errorCallback){
-    cordova.exec(successCallback, errorCallback, 'MyHello', 'serialNumber', []);
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'serialNumber', []);
 }
 
 Hello.install = function() {
