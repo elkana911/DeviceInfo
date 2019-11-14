@@ -17,6 +17,7 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
            <uses-permission android:name="android.permission.BLUETOOTH" /> 
+           <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
         <source-file src="src/android/SpekInfoJava.java" target-dir="src/cordova-plugin-dvcinfo/MyToast" />
     </platform>
