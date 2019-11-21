@@ -55,6 +55,18 @@ Hello.prototype.getBluetoothStatus = function (successCallback, errorCallback){
     cordova.exec(successCallback, errorCallback, 'MyToast', 'bluetoothstatus', []);
 }
 
+Hello.prototype.getImeiDefault = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'imei', []);
+}
+
+Hello.prototype.getImeiFirst = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'imei1', []);
+}
+
+Hello.prototype.getImeiSecond = function (successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'MyToast', 'imei2', []);
+}
+
 
 Hello.install = function() {
     if (!window.plugins) {
