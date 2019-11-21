@@ -71,6 +71,18 @@ public class SpekInfoJava extends CordovaPlugin {
             String status = checkBluetoothConnection();
             callbackContext.success(status);
             return true;
+        } else if (action.equals("imei")) {
+            String status = getImeiDefault();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("imei1")) {
+            String status = getImeiFirst();
+            callbackContext.success(status);
+            return true;
+        } else if (action.equals("imei2")) {
+            String status = getImeiSecond();
+            callbackContext.success(status);
+            return true;
         }
         
         return false;
@@ -146,12 +158,12 @@ public class SpekInfoJava extends CordovaPlugin {
         TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return manager.getDeviceId();
     }
-    private String getImeiDualFirst(){
+    private String getImeiFirst(){
         TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return manager.getDeviceId(0); // may null
     }
     // you can use this function to check dual sim, if return null then it's single
-    private String getImeiDualSecond(){
+    private String getImeiSecond(){
         TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return manager.getDeviceId(1);   // may null
     }    
