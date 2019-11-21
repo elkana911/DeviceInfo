@@ -8,6 +8,7 @@ import android.os.BatteryManager;
 import android.os.Build;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.telephony.TelephonyManager;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -141,6 +142,20 @@ public class SpekInfoJava extends CordovaPlugin {
     private String getKernelVersion(){
         return System.getProperty("os.version");
     }
+    private String getImeiDefault(){
+        TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        return manager.getDeviceId();
+    }
+    private String getImeiDualFirst(){
+        TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        return manager.getDeviceId(0); // may null
+    }
+    // you can use this function to check dual sim, if return null then it's single
+    private String getImeiDualSecond(){
+        TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        return manager.getDeviceId(1);   // may null
+    }    
+    
     
     //    https://gist.github.com/flawyte/efd23dd520fc2320f94ba003b9aabfce
     public static String getSerialNumber(){
