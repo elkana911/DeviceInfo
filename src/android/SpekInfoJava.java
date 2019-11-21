@@ -8,7 +8,7 @@ import android.os.BatteryManager;
 import android.os.Build;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.telephony.TelephonyManager;
+// import android.telephony.TelephonyManager;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -71,7 +71,7 @@ public class SpekInfoJava extends CordovaPlugin {
             String status = checkBluetoothConnection();
             callbackContext.success(status);
             return true;
-        } else if (action.equals("imei")) {
+        } /*else if (action.equals("imei")) {
             String status = getImeiDefault();
             callbackContext.success(status);
             return true;
@@ -83,7 +83,7 @@ public class SpekInfoJava extends CordovaPlugin {
             String status = getImeiSecond();
             callbackContext.success(status);
             return true;
-        }
+        }*/
         
         return false;
     }
@@ -154,6 +154,7 @@ public class SpekInfoJava extends CordovaPlugin {
     private String getKernelVersion(){
         return System.getProperty("os.version");
     }
+    /*
     private String getImeiDefault(){
         TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return manager.getDeviceId();
@@ -167,7 +168,7 @@ public class SpekInfoJava extends CordovaPlugin {
         TelephonyManager manager = (TelephonyManager) webView.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return manager.getDeviceId(1);   // may null
     }    
-    
+    */
     
     //    https://gist.github.com/flawyte/efd23dd520fc2320f94ba003b9aabfce
     public static String getSerialNumber(){
